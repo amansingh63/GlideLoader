@@ -17,7 +17,7 @@ public class DemoActivity extends AppCompatActivity {
 
         glideLoader.setErrorImageResId(R.mipmap.ic_launcher_round);
         glideLoader.setPlaceHolderImageResId(R.mipmap.ic_launcher);
-        glideLoader.loadImage("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Android_Studio_icon.svg/1200px-Android_Studio_icon.svg.png");
+        glideLoader.loadImage("https://www.concretepage.com/android/images/android-imageview-example-by-xml-and-programmatically-3.jpg");
 
     }
 }
