@@ -30,9 +30,12 @@ public class GlideLoader extends FrameLayout {
 
     private ProgressBar progressBar;
     private ImageView imageView;
-    private boolean showProgressBar, customProgressBarSize = false, circleImageView;
+    private boolean showProgressBar;
+    private boolean customProgressBarSize = false;
+    private boolean circleImageView;
     private int errorImageResId, placeHolderImageResId;
     private int progressBarSize;
+    private final int progressBarSizeDivisor = 3;
 
 
     public GlideLoader(@NonNull Context context) {
@@ -92,8 +95,8 @@ public class GlideLoader extends FrameLayout {
         }
         ViewGroup.LayoutParams layoutParams = progressBar.getLayoutParams();
         if (!customProgressBarSize) {
-            layoutParams.width = this.getLayoutParams().height / 2;
-            layoutParams.height = this.getLayoutParams().height / 2;
+            layoutParams.width = this.getLayoutParams().height / progressBarSizeDivisor;
+            layoutParams.height = this.getLayoutParams().height / progressBarSizeDivisor;
         } else {
             layoutParams.width = progressBarSize;
             layoutParams.height = progressBarSize;
