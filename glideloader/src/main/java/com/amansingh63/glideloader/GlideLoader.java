@@ -68,12 +68,12 @@ public class GlideLoader extends FrameLayout {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.layout_image_view_with_progress_bar, this);
 
-        showProgressBar = typedArray.getBoolean(R.styleable.GlideLoader_error_img_src, true);
+        showProgressBar = typedArray.getBoolean(R.styleable.GlideLoader_show_progress_bar, true);
         circleImageView = typedArray.getBoolean(R.styleable.GlideLoader_circular_image_view, false);
         errorImageResId = typedArray.getResourceId(R.styleable.GlideLoader_error_img_src, 0);
         placeHolderImageResId = typedArray.getResourceId(R.styleable.GlideLoader_placeholder_img_src, 0);
+        progressBarSize = (int) typedArray.getDimension(R.styleable.GlideLoader_progress_bar_size, 30.0f);
         if (typedArray.hasValue(R.styleable.GlideLoader_progress_bar_size)) {
-            progressBarSize = (int) typedArray.getDimension(R.styleable.GlideLoader_progress_bar_size, 100.0f);
             customProgressBarSize = true;
         }
     }
@@ -93,10 +93,19 @@ public class GlideLoader extends FrameLayout {
         if (placeHolderImageResId != 0) {
             imageView.setImageResource(placeHolderImageResId);
         }
+        if (!showProgressBar) {
+            hideProgressBar();
+        }
         ViewGroup.LayoutParams layoutParams = progressBar.getLayoutParams();
+        ViewGroup.LayoutParams frameLayoutParams = this.getLayoutParams();
         if (!customProgressBarSize) {
-            layoutParams.width = this.getLayoutParams().height / progressBarSizeDivisor;
-            layoutParams.height = this.getLayoutParams().height / progressBarSizeDivisor;
+            if (frameLayoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+                layoutParams.width = progressBarSize;
+                layoutParams.height = progressBarSize;
+            } else {
+                layoutParams.width = this.getLayoutParams().height / progressBarSizeDivisor;
+                layoutParams.height = this.getLayoutParams().height / progressBarSizeDivisor;
+            }
         } else {
             layoutParams.width = progressBarSize;
             layoutParams.height = progressBarSize;
@@ -104,9 +113,11 @@ public class GlideLoader extends FrameLayout {
         progressBar.setLayoutParams(layoutParams);
     }
 
-    public void loadImage(Object model) {
-        showProgressBar(showProgressBar);
-        RequestBuilder<Drawable> glideRequestBuilder = Glide.with(getContext()).load(model);
+    public void loadImage(String imageUrl) {
+        if (showProgressBar) {
+            showProgressBar();
+        }
+        RequestBuilder<Drawable> glideRequestBuilder = Glide.with(getContext()).load(imageUrl);
         if (placeHolderImageResId != 0) {
             glideRequestBuilder = glideRequestBuilder.apply(new RequestOptions().placeholder(placeHolderImageResId));
         }
@@ -131,14 +142,14 @@ public class GlideLoader extends FrameLayout {
         }).into(imageView);
     }
 
-    public void showProgressBar(boolean showProgressBar) {
-        if (progressBar != null && showProgressBar) {
+    public void showProgressBar() {
+        if (progressBar != null) {
             progressBar.setVisibility(VISIBLE);
         }
     }
 
     public void hideProgressBar() {
-        if (progressBar != null && showProgressBar) {
+        if (progressBar != null) {
             progressBar.setVisibility(INVISIBLE);
         }
     }
@@ -164,10 +175,5 @@ public class GlideLoader extends FrameLayout {
         this.placeHolderImageResId = resId;
     }
 
-    public void setProgressBarProgress(int progress) {
-        if (progressBar != null) {
-            progressBar.setProgress(progress);
-        }
-    }
 
 }

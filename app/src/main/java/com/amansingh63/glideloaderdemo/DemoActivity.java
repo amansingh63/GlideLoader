@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.amansingh63.glideloader.GlideLoader;
 
 public class DemoActivity extends AppCompatActivity {
-    GlideLoader glideLoader;
+
+    private GlideLoader glideLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,9 +16,7 @@ public class DemoActivity extends AppCompatActivity {
 
         glideLoader = (GlideLoader) findViewById(R.id.glideLoader);
 
-        glideLoader.setErrorImageResId(R.mipmap.ic_launcher_round);
-        glideLoader.setPlaceHolderImageResId(R.mipmap.ic_launcher);
-        glideLoader.loadImage("https://www.concretepage.com/android/images/android-imageview-example-by-xml-and-programmatically-3.jpg");
+        glideLoader.loadImage("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Android_Studio_icon.svg/1200px-Android_Studio_icon.svg.png");
 
     }
 }
