@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -28,6 +29,7 @@ import com.bumptech.glide.request.target.Target;
 
 public class GlideLoader extends FrameLayout {
 
+    private final int progressBarSizeDivisor = 3;
     private ProgressBar progressBar;
     private ImageView imageView;
     private boolean showProgressBar;
@@ -35,7 +37,6 @@ public class GlideLoader extends FrameLayout {
     private boolean circleImageView;
     private int errorImageResId, placeHolderImageResId;
     private int progressBarSize;
-    private final int progressBarSizeDivisor = 3;
 
 
     public GlideLoader(@NonNull Context context) {
