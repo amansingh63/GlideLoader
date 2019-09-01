@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GlideImageView">
+        <attr name="show_progress_bar" format="boolean" />
+        <attr name="error_img_src" format="reference" />
+        <attr name="placeholder_img_src" format="reference" />
+        <attr name="progress_bar_size" format="dimension" />
+        <attr name="progress_bar_divisor" format="integer" />
+        <attr name="circular_image_view" format="boolean" />
+    </declare-styleable>
+</resources>

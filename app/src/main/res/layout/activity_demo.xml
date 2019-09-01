@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.amansingh63.glideloaderdemo.DemoActivity">
+    tools:context="com.amansingh63.glideimageviewdemo.DemoActivity">
 
-    <com.amansingh63.glideloader.GlideLoader
+    <com.amansingh63.glideimageview.GlideImageView
         android:id="@+id/glideLoader"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:error_img_src="@mipmap/ic_launcher"
-        app:placeholder_img_src="@mipmap/ic_launcher" />
+        app:show_progress_bar="true" />
 
 
 </RelativeLayout>
